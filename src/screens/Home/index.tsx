@@ -1,15 +1,16 @@
 import React from "react";
-import { Text, SafeAreaView} from "react-native";
+import { Text, SafeAreaView } from "react-native";
 
-import { Header, OvertimeResume } from "../../components";
+import { Header, OvertimeResume, OvertimeHistoric } from "../../components";
 
 const Home = () => {
-    return(
-        <SafeAreaView>
-           <Header />
-           <OvertimeResume />
-        </SafeAreaView>
-    )
+  return (
+    <SafeAreaView>
+      <Header />
+      <OvertimeResume />
+      <OvertimeHistoric />
+    </SafeAreaView>
+  );
 };
 
 export default Home;
