@@ -5,10 +5,9 @@ const styles = StyleSheet.create({
     MainContainer: {
         backgroundColor: 'gray',
         width: '100%',
-        height: '30%',
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingHorizontal: '5%',
+        height: 70,
+        justifyContent: 'center',
+        paddingHorizontal: '2.5%',
     },
     UserImage: {
         width: 48,
@@ -22,7 +21,6 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     UserName: {
-        marginLeft: '5%',
         fontSize: 20
     }
 });

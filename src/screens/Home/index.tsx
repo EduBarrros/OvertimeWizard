@@ -1,12 +1,13 @@
 import React from "react";
 import { Text, SafeAreaView} from "react-native";
 
-import Header from "../../components/Header";
+import { Header, OvertimeResume } from "../../components";
 
 const Home = () => {
     return(
         <SafeAreaView>
            <Header />
+           <OvertimeResume />
         </SafeAreaView>
     )
 };
