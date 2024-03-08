@@ -8,11 +8,22 @@ import CustomButton from "../CustomButton";
 type OvertimeAddModalProps = {
   show: boolean;
   onClose: () => void;
+  onSubmit: () => void;
+  initialDate: string;
+  setInitialDate: (date: string) => void
+  finalDate: string;
+  setFinalDate: (date: string) => void
 };
 
-const OvertimeAddModal = ({ show, onClose }: OvertimeAddModalProps) => {
-  const [initialDate, setInitialDate] = useState("");
-  const [finalDate, setFinalDate] = useState("");
+const OvertimeAddModal = ({
+  show,
+  onClose,
+  onSubmit,
+  initialDate,
+  setInitialDate,
+  finalDate,
+  setFinalDate
+}: OvertimeAddModalProps) => {
   const [openInitialCalendar, setOpenInitialCalendar] = useState(false);
   const [openFinalCalendar, setOpenFinalCalendar] = useState(false);
 
@@ -27,34 +38,42 @@ const OvertimeAddModal = ({ show, onClose }: OvertimeAddModalProps) => {
             </TouchableOpacity>
           </View>
           {openInitialCalendar ? (
-            <DatePicker onSelectedChange={(date) => {
-              setInitialDate(date)
-              setOpenInitialCalendar(false)
-            }} />
+            <DatePicker
+              onSelectedChange={(date) => {
+                setInitialDate(date);
+                setOpenInitialCalendar(false);
+              }}
+            />
           ) : openFinalCalendar ? (
-            <DatePicker onSelectedChange={(date) => {
-              setFinalDate(date)
-              setOpenFinalCalendar(false)
-            }} />
+            <DatePicker
+              onSelectedChange={(date) => {
+                setFinalDate(date);
+                setOpenFinalCalendar(false);
+              }}
+            />
           ) : (
             <View>
-              <View>
-                <Text style={styles.DateTitle}>
-                  Select the initial date and time:
+              <TouchableOpacity
+                onPress={() => setOpenInitialCalendar(true)}
+                style={styles.DateSelect}
+              >
+                <Text style={styles.DateSelectText}>
+                  {initialDate ? initialDate : "Select the initial date"}
                 </Text>
-                <TouchableOpacity onPress={() => setOpenInitialCalendar(true)}>
-                  <Text>{initialDate ? initialDate : "__/__/__"}</Text>
+              </TouchableOpacity>
+              {initialDate ? (
+                <TouchableOpacity
+                  onPress={() => setOpenFinalCalendar(true)}
+                  style={styles.DateSelect}
+                >
+                  <Text style={styles.DateSelectText}>
+                    {finalDate ? finalDate : "Select the final date"}
+                  </Text>
                 </TouchableOpacity>
-              </View>
-              <View style={styles.DateContainer}>
-                <Text style={styles.DateTitle}>
-                  Select the final date and time:
-                </Text>
-                <TouchableOpacity onPress={() => setOpenFinalCalendar(true)}>
-                  <Text>{finalDate ? finalDate : "__/__/__"}</Text>
-                </TouchableOpacity>
-              </View>
-              <CustomButton text="Save" onPress={() => console.log("teste") }/>
+              ) : null}
+              {initialDate && finalDate !== "" ? (
+                <CustomButton text="Save" onPress={() => onSubmit()} />
+              ) : null}
             </View>
           )}
         </View>

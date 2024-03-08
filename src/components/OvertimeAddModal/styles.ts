@@ -30,12 +30,17 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: "bold"
     },
-    DateTitle: {
-        fontSize: 18,
-        marginVertical: 8,
+    DateSelect: {
+        borderWidth: 1,
+        borderColor: "blue",
+        justifyContent: "center",
+        alignItems: "center",
+        height: 50,
+        marginTop: 16,
+        borderRadius: 8,
     },
-    DateContainer:{
-        marginTop: 8
+    DateSelectText: {
+        fontWeight: "bold"
     }
 });
 
