@@ -3,7 +3,6 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     MainContainer: {
-        backgroundColor: 'gray',
         width: '100%',
         height: 70,
         justifyContent: 'center',
@@ -21,7 +20,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     UserName: {
-        fontSize: 20
+        fontSize: 24
     }
 });
 

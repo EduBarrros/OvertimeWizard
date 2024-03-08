@@ -1,10 +1,9 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator();
 
 import { Home, Settings } from "../screens";
 
@@ -17,8 +16,8 @@ const AppNavigator = () => {
           headerShown: false
         }}
       >
-        <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="Settings" component={Settings} />
+        <Tab.Screen name="Home" component={Home} options={{tabBarShowLabel: false, tabBarIcon: ({focused}) => (<Ionicons name="home" size={32} color={focused ? "blue" : "gray"} />)}}/>
+        <Tab.Screen name="Settings" component={Settings} options={{tabBarShowLabel: false, tabBarIcon: ({focused}) => (<Ionicons name="settings" size={32} color={focused ? "blue" : "gray"} />)}}/>
       </Tab.Navigator>
     </NavigationContainer>
   );
