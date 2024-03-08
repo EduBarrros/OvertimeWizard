@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native";
+import styles from "./styles";
 import {
   Header,
   OvertimeResume,
@@ -11,7 +12,7 @@ const Home = () => {
   const [showAddModal, setShowAddModal] = useState(false);
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.MainContainer}>
       <Header title="Hi Eduardo" />
       <OvertimeResume />
       <OvertimeHistoric onPress={() => setShowAddModal(!showAddModal)}/>

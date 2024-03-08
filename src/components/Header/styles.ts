@@ -3,10 +3,8 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     MainContainer: {
-        width: '100%',
         height: 70,
         justifyContent: 'center',
-        paddingHorizontal: '2.5%',
     },
     UserImage: {
         width: 48,

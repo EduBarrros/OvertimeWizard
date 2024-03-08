@@ -9,13 +9,33 @@ const styles = StyleSheet.create({
     },
     SubContainer: {
         backgroundColor: "white",
-        padding: 16,
-        height: "40%",
+        paddingHorizontal: "2.5%",
+        paddingTop: 16,
+        height: "55%",
         shadowColor: '#000',
-            shadowOffset: { width: 0, height: -2 },
-            shadowOpacity: 0.2,
-            shadowRadius: 3,
-            elevation: 3, // Para adicionar sombra no Android
+        shadowOffset: { width: 0, height: -2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+        elevation: 3,
+        borderTopStartRadius: 16,
+        borderTopEndRadius: 16
+    },
+    HeaderModal: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginBottom: 16
+    },
+    HeaderTitle: {
+        fontSize: 24,
+        fontWeight: "bold"
+    },
+    DateTitle: {
+        fontSize: 18,
+        marginVertical: 8,
+    },
+    DateContainer:{
+        marginTop: 8
     }
 });
 

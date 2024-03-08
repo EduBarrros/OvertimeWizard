@@ -4,7 +4,6 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     MainContainer: {
         width: "100%",
-        paddingHorizontal: "2.5%",
         marginTop: 16
     },
     InputContainer: {

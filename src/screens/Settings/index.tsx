@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { SafeAreaView } from "react-native";
 import { Header, CustomInput, CustomButton } from "../../components";
 import { useCalcParamsStore } from "../../stores";
+import styles from "./styles";
 
 const Settings = () => {
 
@@ -23,7 +24,7 @@ const Settings = () => {
   }
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.MainContainer}>
       <Header title="Settings"/>
       <CustomInput title={"Hour price"} defaultValue={HourPrice} onChangeText={setHourPrice}/>
       <CustomInput title={"Extra daytime percentage"} defaultValue={DayTimePercentage} onChangeText={setDayTimePercentage}/>

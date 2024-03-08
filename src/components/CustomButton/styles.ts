@@ -3,9 +3,8 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     MainContainer: {
-        width: "95%",
+        width: "100%",
         justifyContent: "center",
-        marginHorizontal: "2.5%",
         alignItems: "center",
         backgroundColor: "blue",
         height: 60,
