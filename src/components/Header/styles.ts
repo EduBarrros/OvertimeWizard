@@ -20,7 +20,8 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     UserName: {
-        fontSize: 24
+        fontSize: 24,
+        fontWeight: "bold"
     }
 });
 

@@ -5,7 +5,7 @@ import styles from "./styles";
 const OvertimeResume = () => {
   return (
     <>
-      <Text style={styles.ResumeTitle}>Resumo do mês</Text>
+      <Text style={styles.ResumeTitle}>Monthly summary</Text>
       <View style={styles.MainContainer}>
         <View style={styles.SubContainer}>
           <View>

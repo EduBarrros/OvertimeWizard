@@ -39,8 +39,7 @@ const fakedata = [
 const OvertimeHistoric = () => {
     return(
         <View>
-            <Text style={styles.ResumeTitle}>Horas extras</Text>
-            
+            <Text style={styles.ResumeTitle}>Overtimes</Text>
             <FlatList
                 data={fakedata}
                 renderItem={() => <HistoricCard />}

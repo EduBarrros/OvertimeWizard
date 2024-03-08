@@ -5,7 +5,7 @@ import { Header, OvertimeResume, OvertimeHistoric } from "../../components";
 const Home = () => {
   return (
     <SafeAreaView>
-      <Header title="Olá Eduardo" />
+      <Header title="Hi Eduardo" />
       <OvertimeResume />
       <OvertimeHistoric />
     </SafeAreaView>
