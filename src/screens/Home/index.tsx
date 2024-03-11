@@ -14,10 +14,10 @@ const Home = () => {
   const [initialDate, setInitialDate] = useState("");
   const [finalDate, setFinalDate] = useState("");
 
-  const CalcHoursHandle = () => {
-    const {totalHorasDiurnas, totalHorasNoturnas, totalHorasDomingos} = CalcOvertimeHours(initialDate, finalDate)
+  const CalcHoursHandle = async () => {
+    const {totalHorasDiurnas, totalHorasNoturnas, totalHorasDiasEspeciais} = await CalcOvertimeHours(initialDate, finalDate)
 
-    console.log(totalHorasDiurnas, totalHorasNoturnas, totalHorasDomingos)
+    console.log(totalHorasDiurnas, totalHorasNoturnas, totalHorasDiasEspeciais)
   };
 
   return (
