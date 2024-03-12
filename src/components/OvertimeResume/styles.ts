@@ -1,21 +1,27 @@
 
-import { StyleSheet } from "react-native";
+import { StyleSheet, Platform } from "react-native";
 
 const styles = StyleSheet.create({
     MainContainer: {
-        height: 100,
+        height: 140,
         marginTop: 8,
         backgroundColor: 'gray',
-        borderRadius: 10
+        borderRadius: 10,
+        ...Platform.select({
+            ios: {
+              shadowColor: 'black',
+              shadowOffset: { width: 0, height: 2 },
+              shadowOpacity: 0.3,
+              shadowRadius: 4,
+            },
+            android: {
+              elevation: 4,
+            },
+          }),
     },
     SubContainer: {
         flexDirection: 'row'
     },
-    ResumeTitle: {
-        marginTop: 18,
-        fontSize: 16,
-        fontWeight: 'bold'
-    }
 });
 
 export default styles;

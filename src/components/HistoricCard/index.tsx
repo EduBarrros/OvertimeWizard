@@ -13,12 +13,22 @@ type HistoricCardProps = {
 const HistoricCard: React.FC<HistoricCardProps> = ({ hours, value, initDate, endDate }) => {
   return (
     <View style={styles.MainContainer}>
-        <Text>
-            {hours}
-        </Text>
-        <Text>
-            {value}
-        </Text>
+        <View style={styles.TimeContainer}>
+            <Text>
+                Inicio: {initDate}
+            </Text>
+            <Text>
+                Final: {endDate}
+            </Text>
+        </View>
+        <View>
+            <Text>
+                {hours}Horas
+            </Text>
+            <Text>
+                {value}Reais
+            </Text>
+        </View>
     </View>
   )
 };

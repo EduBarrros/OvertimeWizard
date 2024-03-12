@@ -26,13 +26,11 @@ const OvertimeHistoric = ({onPress}: OvertimeHistoricProps) => {
       );
 
     return(
-        <View>
-            <Text style={styles.ResumeTitle}>Overtimes</Text>
+        <View style={styles.MainContainer}>
             <OvertimeAddButton onPress={onPress}/>
             <FlatList
                 data={CalcParams.Overtimes}
                 renderItem={renderItem}
-                style={styles.List}
                 showsVerticalScrollIndicator={false}
             />
         </View>
