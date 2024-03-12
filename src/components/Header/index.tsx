@@ -23,7 +23,7 @@ const Header = ({ title, showBackButton }: HeaderProps) => {
         <>
           <Text style={styles.UserName}>{title}</Text>
           <TouchableOpacity onPress={() => navigation.navigate("Settings" as never)}>
-            <Ionicons name="settings" size={28} />
+            <Ionicons name="settings" color='gray' size={28} />
           </TouchableOpacity>
         </>
       )}
