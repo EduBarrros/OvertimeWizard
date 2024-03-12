@@ -1,10 +1,10 @@
 import { parse, isSunday, set } from 'date-fns';
-import { GovApi } from '../service';
+import { GovApi } from '../api';
 
 const CalcOvertimeHours = async (initDate: string, finalDate: string) => {
 
   const holydays: any = await GovApi.get('feriados/v1/2024');
-  console.log('feriados ->',holydays.data)
+
   const formatoDataHora = 'yyyy/MM/dd HH:mm';
 
   // Converte as strings para objetos Date
@@ -18,16 +18,21 @@ const CalcOvertimeHours = async (initDate: string, finalDate: string) => {
 
   // Itera sobre as horas entre as duas datas
   for (let horaAtual = data1; horaAtual < data2; horaAtual = set(horaAtual, { hours: horaAtual.getHours() + 1 })) {
-    if (horaAtual.getHours() >= 6 && horaAtual.getHours() <= 23) {
-      totalHorasDiurnas++;
-    } else {
-      totalHorasNoturnas++;
-    }
+    // Verifica se a hora está em um domingo
+    const isSundayHour = isSunday(horaAtual);
 
+    // Verifica se a hora está em um feriado
     const isHolyday = holydays?.data?.some((holyday: any) => holyday?.date === horaAtual.toISOString().split('T')[0]);
 
-    if (isSunday(horaAtual) || isHolyday) {
+    // Contabiliza como especial (feriado ou domingo)
+    if (isSundayHour || isHolyday) {
       totalHorasDiasEspeciais++;
+    } else {
+      if (horaAtual.getHours() >= 6 && horaAtual.getHours() <= 23) {
+        totalHorasDiurnas++;
+      } else {
+        totalHorasNoturnas++;
+      }
     }
   }
 
