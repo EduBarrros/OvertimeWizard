@@ -1,6 +1,13 @@
 import { create } from 'zustand'
 import type { } from '@redux-devtools/extension'
 
+type Overtime = {
+  hours: number
+  value: number
+  initDate: string
+  endDate: string
+}
+
 interface CalcParamsState {
   HourPrice: number
   SetHourPrice: (by: number) => void
@@ -10,6 +17,8 @@ interface CalcParamsState {
   SetNightTimePercentage: (by: number) => void
   SundaysTimePercentage: number
   SetSundaysTimePercentage: (by: number) => void
+  Overtimes: Overtime[]
+  setOvertime: (newOvertimes: Overtime[]) => void
 }
 
 const useCalcParamsStore = create<CalcParamsState>()(
@@ -21,7 +30,9 @@ const useCalcParamsStore = create<CalcParamsState>()(
     NightTimePercentage: 70,
     SetNightTimePercentage: (by) => set(() => ({ NightTimePercentage: by })),
     SundaysTimePercentage: 150,
-    SetSundaysTimePercentage: (by) => set(() => ({ SundaysTimePercentage: by }))
+    SetSundaysTimePercentage: (by) => set(() => ({ SundaysTimePercentage: by })),
+    Overtimes: [],
+    setOvertime: (newOvertimes: Overtime[]) => set({ Overtimes: newOvertimes })
   }),
 );
 

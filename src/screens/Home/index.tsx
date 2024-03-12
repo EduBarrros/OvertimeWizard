@@ -14,7 +14,6 @@ const Home = () => {
   const [showAddModal, setShowAddModal] = useState(false);
   const [initialDate, setInitialDate] = useState("");
   const [finalDate, setFinalDate] = useState("");
-  const [totalValue, setTotalValue] = useState(0);
 
   const CalcParams = useCalcParamsStore();
 
@@ -32,7 +31,14 @@ const Home = () => {
         (CalcParams.HourPrice *
           (CalcParams.HourPrice + CalcParams.SundaysTimePercentage / 100));
 
-      setTotalValue(CalcHourPrice);
+      const OvertimeBody = {
+        initDate: initialDate,
+        endDate: finalDate,
+        hours: totalHorasDiasEspeciais,
+        value: CalcHourPrice,
+      };
+
+      CalcParams.setOvertime([...CalcParams.Overtimes, OvertimeBody]);
     } else if (totalHorasDiasEspeciais === 0) {
       const MorningOvetime =
         totalHorasDiurnas *
@@ -44,7 +50,14 @@ const Home = () => {
         (CalcParams.HourPrice +
           (CalcParams.HourPrice * CalcParams.NightTimePercentage) / 100);
 
-      setTotalValue(MorningOvetime + NightOvertime);
+      const OvertimeBody = {
+        initDate: initialDate,
+        endDate: finalDate,
+        hours: totalHorasDiurnas + totalHorasNoturnas,
+        value: MorningOvetime + NightOvertime,
+      };
+
+      CalcParams.setOvertime([...CalcParams.Overtimes, OvertimeBody]);
     }
   };
 
@@ -56,7 +69,12 @@ const Home = () => {
       <OvertimeAddModal
         show={showAddModal}
         onClose={() => setShowAddModal(!showAddModal)}
-        onSubmit={() => AddOvertimeHandler()}
+        onSubmit={() => {
+          setInitialDate("")
+          setFinalDate("")
+          setShowAddModal(!showAddModal)
+          AddOvertimeHandler()
+        }}
         initialDate={initialDate}
         setInitialDate={setInitialDate}
         finalDate={finalDate}

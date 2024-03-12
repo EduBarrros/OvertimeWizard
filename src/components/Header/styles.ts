@@ -4,7 +4,9 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     MainContainer: {
         height: 70,
-        justifyContent: 'center',
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        alignItems: 'center'
     },
     UserImage: {
         width: 48,

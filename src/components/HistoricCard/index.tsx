@@ -1,13 +1,26 @@
 import React from "react";
-import { View } from "react-native";
+import { View, Text } from "react-native";
 import styles from "./styles";
 
-const HistoricCard = () => {
-    return(
-        <View style={styles.MainContainer}>
+type HistoricCardProps = {
+    hours: number
+    value: number
+    initDate: string
+    endDate: string
+  }
+  
 
-        </View>
-    )
-}
+const HistoricCard: React.FC<HistoricCardProps> = ({ hours, value, initDate, endDate }) => {
+  return (
+    <View style={styles.MainContainer}>
+        <Text>
+            {hours}
+        </Text>
+        <Text>
+            {value}
+        </Text>
+    </View>
+  )
+};
 
 export default HistoricCard;

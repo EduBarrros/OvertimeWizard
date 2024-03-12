@@ -34,7 +34,7 @@ const Settings = () => {
 
   return (
     <SafeAreaView style={styles.MainContainer}>
-      <Header title="Settings" />
+      <Header title="Settings" showBackButton/>
       <CustomInput
         title={"Hour price"}
         defaultValue={HourPrice}
