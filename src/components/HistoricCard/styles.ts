@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
         height: 120,
         backgroundColor: '#CBD2DA',
         borderRadius: 8,
-        marginTop: 8,
+        marginBottom: 8,
         flexDirection: 'row'
     },
     SectionContainer: {

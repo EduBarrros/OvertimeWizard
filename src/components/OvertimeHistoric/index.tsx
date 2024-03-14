@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, FlatList, ListRenderItem } from "react-native";
+import { View, Text, FlatList, ListRenderItem} from "react-native";
 import styles from "./styles";
 import { useCalcParamsStore } from "../../stores";
 import Ionicons from "@expo/vector-icons/Ionicons";

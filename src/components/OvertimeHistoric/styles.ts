@@ -3,7 +3,8 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     MainContainer: {
-        marginTop: 32
+        flex: 1,
+        marginTop: 32,
     },
     EmptyMainContainer: {
         height: 430,

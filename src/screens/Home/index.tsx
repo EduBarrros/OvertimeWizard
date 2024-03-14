@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { SafeAreaView } from "react-native";
+import React, { useState } from "react";
+import { View } from "react-native";
 import styles from "./styles";
 import { CalcOvertimeHours } from "../../service";
 import {
@@ -62,7 +62,7 @@ const Home = () => {
   };
 
   return (
-    <SafeAreaView style={styles.MainContainer}>
+    <View style={styles.MainContainer}>
       <Header title="Hi Eduardo" />
       <OvertimeResume />
       <OvertimeHistoric onPress={() => setShowAddModal(!showAddModal)} />
@@ -80,7 +80,7 @@ const Home = () => {
         finalDate={finalDate}
         setFinalDate={setFinalDate}
       />
-    </SafeAreaView>
+    </View>
   );
 };
 
