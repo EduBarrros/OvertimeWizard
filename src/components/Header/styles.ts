@@ -8,12 +8,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center'
     },
-    UserImage: {
-        width: 48,
-        height: 48,
-        backgroundColor: 'black',
-        borderRadius: 26
-    },
     UserContainer: {
         flexDirection: 'row',
         justifyContent: 'center',

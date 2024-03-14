@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 import DatePicker from "react-native-modern-datepicker";
-import { Modal, View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import styles from "./styles";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import CustomButton from "../CustomButton";
+import Modal from "react-native-modal";
 
 type OvertimeAddModalProps = {
   show: boolean;
   onClose: () => void;
   onSubmit: () => void;
   initialDate: string;
-  setInitialDate: (date: string) => void
+  setInitialDate: (date: string) => void;
   finalDate: string;
-  setFinalDate: (date: string) => void
+  setFinalDate: (date: string) => void;
 };
 
 const OvertimeAddModal = ({
@@ -22,13 +23,19 @@ const OvertimeAddModal = ({
   initialDate,
   setInitialDate,
   finalDate,
-  setFinalDate
+  setFinalDate,
 }: OvertimeAddModalProps) => {
   const [openInitialCalendar, setOpenInitialCalendar] = useState(false);
   const [openFinalCalendar, setOpenFinalCalendar] = useState(false);
 
   return (
-    <Modal visible={show} animationType="slide" transparent={true}>
+    <Modal
+      isVisible={show}
+      animationIn={"slideInUp"}
+      animationOut={"slideOutDown"}
+      style={{ margin: 0 }}
+      animationOutTiming={700}
+    >
       <View style={styles.MainContainer}>
         <View style={styles.SubContainer}>
           <View style={styles.HeaderModal}>
