@@ -5,8 +5,7 @@ const styles = StyleSheet.create({
     SubContainer: {
         backgroundColor: "white",
         paddingHorizontal: "2.5%",
-        paddingTop: 16,
-        height: "55%",
+        paddingVertical: 16,
         borderTopStartRadius: 16,
         borderTopEndRadius: 16,
     },
