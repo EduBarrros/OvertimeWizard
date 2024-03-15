@@ -28,13 +28,13 @@ const HistoricCard = ({
         <Text style={styles.SectionText}>
           <Text style={styles.DateName}>Start:</Text>{" "}
           {moment(initDate, "YYYY/MM/DD HH:mm").format('L')}{" "}
-          {moment(endDate, "YYYY/MM/DD HH:mm").format("LT")}
+          {moment(initDate, "YYYY/MM/DD HH:mm").format("LT")}
         </Text>
       </View>
       <View style={styles.SectionContainer}>
         <View>
           <Text style={styles.DateName}>Hours:</Text>
-          <Text style={styles.TimeText}>{hours} hours</Text>
+          <Text style={styles.TimeText}>{hours} H</Text>
         </View>
         <Text style={styles.SectionText}>
           <Text style={styles.DateName}>End:</Text>{" "}

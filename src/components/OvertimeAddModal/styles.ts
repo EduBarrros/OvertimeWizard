@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     },
     DateSelect: {
         borderWidth: 1,
-        borderColor: "blue",
+        borderColor: "#021867",
         justifyContent: "center",
         alignItems: "center",
         height: 50,

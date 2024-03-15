@@ -33,7 +33,7 @@ const OvertimeHistoric = ({ onPress }: OvertimeHistoricProps) => {
   const EmptyComponent = () => {
     return (
       <View style={styles.EmptyMainContainer}>
-        <Ionicons name="search" color={'blue'} size={40} />
+        <Ionicons name="search" color={'#021867'} size={40} />
         <Text style={styles.EmptyTitle}>You do not have overtime hours registered</Text>
       </View>
     );

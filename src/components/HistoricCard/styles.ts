@@ -18,11 +18,10 @@ const styles = StyleSheet.create({
     SectionValue: {
         fontWeight: 'bold',
         fontSize: 24,
-        color: 'blue',
+        color: '#021867',
         marginTop: 4
     },
     TimeText: {
-        fontWeight: 'bold',
         color: '#2D3748',
         fontSize: 24,
         marginTop: 4

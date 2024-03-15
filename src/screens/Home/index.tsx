@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View } from "react-native";
+import { SafeAreaView } from "react-native";
 import styles from "./styles";
 import { CalcOvertimeHours } from "../../service";
 import {
@@ -20,7 +20,6 @@ const Home = () => {
   const AddOvertimeHandler = async () => {
     const { totalHorasDiurnas, totalHorasNoturnas, totalHorasDiasEspeciais } =
       await CalcOvertimeHours(initialDate, finalDate);
-
     if (
       totalHorasDiasEspeciais > 0 &&
       totalHorasDiurnas === 0 &&
@@ -28,8 +27,7 @@ const Home = () => {
     ) {
       const CalcHourPrice =
         totalHorasDiasEspeciais *
-        (CalcParams.HourPrice *
-          (CalcParams.HourPrice + CalcParams.SundaysTimePercentage / 100));
+        (CalcParams.HourPrice * (1 + CalcParams.SundaysTimePercentage / 100));
 
       const OvertimeBody = {
         initDate: initialDate,
@@ -42,13 +40,11 @@ const Home = () => {
     } else if (totalHorasDiasEspeciais === 0) {
       const MorningOvetime =
         totalHorasDiurnas *
-        (CalcParams.HourPrice +
-          (CalcParams.HourPrice * CalcParams.DayTimePercentage) / 100);
+        (CalcParams.HourPrice * (1 + CalcParams.DayTimePercentage / 100));
 
       const NightOvertime =
         totalHorasNoturnas *
-        (CalcParams.HourPrice +
-          (CalcParams.HourPrice * CalcParams.NightTimePercentage) / 100);
+        (CalcParams.HourPrice * (1 + CalcParams.NightTimePercentage / 100));
 
       const OvertimeBody = {
         initDate: initialDate,
@@ -58,11 +54,32 @@ const Home = () => {
       };
 
       CalcParams.setOvertime([...CalcParams.Overtimes, OvertimeBody]);
+    } else {
+      const SpecialOvertime =
+        totalHorasDiasEspeciais *
+        (CalcParams.HourPrice * (1 + CalcParams.SundaysTimePercentage / 100));
+
+      const MorningOvetime =
+        totalHorasDiurnas *
+        (CalcParams.HourPrice * (1 + CalcParams.DayTimePercentage / 100));
+
+      const NightOvertime =
+        totalHorasNoturnas *
+        (CalcParams.HourPrice * (1 + CalcParams.NightTimePercentage / 100));
+
+      const OvertimeBody = {
+        initDate: initialDate,
+        endDate: finalDate,
+        hours: totalHorasDiurnas + totalHorasNoturnas + totalHorasDiasEspeciais,
+        value: MorningOvetime + NightOvertime + SpecialOvertime,
+      };
+
+      CalcParams.setOvertime([...CalcParams.Overtimes, OvertimeBody]);
     }
   };
 
   return (
-    <View style={styles.MainContainer}>
+    <SafeAreaView style={styles.MainContainer}>
       <Header title="Hi Eduardo" />
       <OvertimeResume />
       <OvertimeHistoric onPress={() => setShowAddModal(!showAddModal)} />
@@ -70,17 +87,17 @@ const Home = () => {
         show={showAddModal}
         onClose={() => setShowAddModal(!showAddModal)}
         onSubmit={() => {
-          setInitialDate("")
-          setFinalDate("")
-          setShowAddModal(!showAddModal)
-          AddOvertimeHandler()
+          setInitialDate("");
+          setFinalDate("");
+          setShowAddModal(!showAddModal);
+          AddOvertimeHandler();
         }}
         initialDate={initialDate}
         setInitialDate={setInitialDate}
         finalDate={finalDate}
         setFinalDate={setFinalDate}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 

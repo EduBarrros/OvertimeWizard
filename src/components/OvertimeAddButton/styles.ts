@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     MainContainer: {
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "blue",
+        backgroundColor: "#021867",
         height: 70,
         borderRadius: 8,
         marginVertical: 8,

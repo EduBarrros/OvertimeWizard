@@ -28,9 +28,10 @@ const CalcOvertimeHours = async (initDate: string, finalDate: string) => {
     if (isSundayHour || isHolyday) {
       totalHorasDiasEspeciais++;
     } else {
+      // Verifica se a hora está entre 6h e 23h para contabilizar como diurna
       if (horaAtual.getHours() >= 6 && horaAtual.getHours() <= 23) {
         totalHorasDiurnas++;
-      } else {
+      } else { // Caso contrário, contabiliza como noturna
         totalHorasNoturnas++;
       }
     }
