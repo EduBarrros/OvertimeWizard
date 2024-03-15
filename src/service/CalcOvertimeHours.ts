@@ -5,9 +5,10 @@ const CalcOvertimeHours = async (initDate: string, finalDate: string) => {
 
   const holydays: any = await GovApi.get('feriados/v1/2024');
 
-  const formatoDataHora = 'yyyy/MM/dd HH:mm';
+  // Formato de data e hora ajustado
+  const formatoDataHora = 'dd/MM/yy HH:mm';
 
-  // Converte as strings para objetos Date
+  // Converte as strings para objetos Date usando o novo formato
   const data1 = parse(initDate, formatoDataHora, new Date());
   const data2 = parse(finalDate, formatoDataHora, new Date());
 

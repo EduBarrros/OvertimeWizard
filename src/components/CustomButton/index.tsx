@@ -5,13 +5,15 @@ import styles from "./styles";
 type CustomButtonProps = {
     text: string
     onPress: () => void
+    disabled?: boolean
 }
 
-const CustomButton = ({text, onPress}: CustomButtonProps) => {
+const CustomButton = ({text, onPress, disabled=false}: CustomButtonProps) => {
    return(
     <TouchableOpacity
         onPress={() => onPress()}
         style={styles.MainContainer}
+        disabled={disabled}
     >
         <Text style={styles.MainText}>
             {text}

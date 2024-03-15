@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#021867",
         height: 60,
         marginTop: 40,
-        borderRadius: 8
+        borderRadius: 32
     },
     MainText: {
         color: "white",

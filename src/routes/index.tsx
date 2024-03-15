@@ -1,10 +1,8 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Ionicons from '@expo/vector-icons/Ionicons';
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";;
 import { createStackNavigator } from "@react-navigation/stack";
 
-const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator()
 
 import { Home, Settings } from "../screens";

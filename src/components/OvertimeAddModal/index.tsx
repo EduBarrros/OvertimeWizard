@@ -1,6 +1,12 @@
-import React, { useState } from "react";
-import DatePicker from "react-native-modern-datepicker";
-import { View, Text, TouchableOpacity } from "react-native";
+import React, { useEffect, useState } from "react";
+import { TextInputMask } from "react-native-masked-text";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
 import styles from "./styles";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import CustomButton from "../CustomButton";
@@ -25,67 +31,126 @@ const OvertimeAddModal = ({
   finalDate,
   setFinalDate,
 }: OvertimeAddModalProps) => {
-  const [openInitialCalendar, setOpenInitialCalendar] = useState(false);
-  const [openFinalCalendar, setOpenFinalCalendar] = useState(false);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+
+  const [startHour, setStartHour] = useState("");
+  const [endHour, setEndHour] = useState("");
+
+  const DatesHandler = () => {
+    const InitialDate = `${startDate} ${startHour}`;
+
+    const EndDate = `${endDate} ${endHour}`;
+
+    setInitialDate(InitialDate);
+    setFinalDate(EndDate);
+  };
+
+  useEffect(() => {
+    if (initialDate !== "" && finalDate !== "") onSubmit();
+  }, [initialDate, endDate]);
 
   return (
-    <Modal
-      isVisible={show}
-      animationIn={"slideInUp"}
-      animationOut={"slideOutDown"}
-      style={{ margin: 0 }}
-      animationOutTiming={700}
-    >
-      <View style={styles.MainContainer}>
-        <View style={styles.SubContainer}>
-          <View style={styles.HeaderModal}>
-            <Text style={styles.HeaderTitle}>Overtime register</Text>
-            <TouchableOpacity onPress={() => onClose()}>
-              <Ionicons name="close" size={32} />
-            </TouchableOpacity>
-          </View>
-          {openInitialCalendar ? (
-            <DatePicker
-              onSelectedChange={(date) => {
-                setInitialDate(date);
-                setOpenInitialCalendar(false);
-              }}
-            />
-          ) : openFinalCalendar ? (
-            <DatePicker
-              onSelectedChange={(date) => {
-                setFinalDate(date);
-                setOpenFinalCalendar(false);
-              }}
-            />
-          ) : (
-            <View>
-              <TouchableOpacity
-                onPress={() => setOpenInitialCalendar(true)}
-                style={styles.DateSelect}
-              >
-                <Text style={styles.DateSelectText}>
-                  {initialDate ? initialDate : "Select the initial date"}
-                </Text>
+      <Modal
+        isVisible={show}
+        animationIn={"slideInUp"}
+        animationOut={"slideOutDown"}
+        style={{ margin: 0, justifyContent: "flex-end" }}
+        animationOutTiming={700}
+        onBackdropPress={() => {
+          Keyboard.dismiss();
+          onClose();
+          setStartDate("");
+          setEndDate("");
+          setStartHour("");
+          setEndHour("");
+        }}
+        onSwipeComplete={() => {
+          onClose();
+          setStartDate("");
+          setEndDate("");
+          setStartHour("");
+          setEndHour("");
+        }}
+        swipeDirection="down"
+        avoidKeyboard={true}
+      >
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+          <View style={styles.SubContainer}>
+            <View style={styles.HeaderModal}>
+              <Text style={styles.HeaderTitle}>New overtime</Text>
+              <TouchableOpacity onPress={() => onClose()}>
+                <Ionicons name="close" size={32} />
               </TouchableOpacity>
-              {initialDate ? (
-                <TouchableOpacity
-                  onPress={() => setOpenFinalCalendar(true)}
-                  style={styles.DateSelect}
-                >
-                  <Text style={styles.DateSelectText}>
-                    {finalDate ? finalDate : "Select the final date"}
-                  </Text>
-                </TouchableOpacity>
-              ) : null}
-              {initialDate && finalDate !== "" ? (
-                <CustomButton text="Save" onPress={() => onSubmit()} />
-              ) : null}
             </View>
-          )}
-        </View>
-      </View>
-    </Modal>
+            <View style={styles.StartContainer}>
+              <View style={styles.StartDateContainer}>
+                <Text style={styles.InputTitle}>Start date</Text>
+                <TextInputMask
+                  style={styles.DateInput}
+                  type="datetime"
+                  placeholder="00/00/00"
+                  textAlign="center"
+                  maxLength={8}
+                  placeholderTextColor={"#718096"}
+                  onChangeText={(text) => setStartDate(text)}
+                  value={startDate}
+                />
+              </View>
+              <View style={styles.StartHourContainer}>
+                <Text style={styles.InputTitle}>Start hour</Text>
+                <TextInputMask
+                  style={styles.DateInput}
+                  placeholder="00:00"
+                  maxLength={5}
+                  type="custom"
+                  options={{
+                    mask: "99:99",
+                  }}
+                  textAlign="center"
+                  keyboardType="number-pad"
+                  placeholderTextColor={"#718096"}
+                  onChangeText={(text) => setStartHour(text)}
+                  value={startHour}
+                />
+              </View>
+            </View>
+            <View style={styles.EndContainer}>
+              <View style={styles.EndDateContainer}>
+                <Text style={styles.InputTitle}>End date</Text>
+                <TextInputMask
+                  style={styles.DateInput}
+                  placeholder="00/00/00"
+                  type="datetime"
+                  textAlign="center"
+                  maxLength={8}
+                  placeholderTextColor={"#718096"}
+                  onChangeText={(text) => setEndDate(text)}
+                  value={endDate}
+                />
+              </View>
+              <View style={styles.EndHourContainer}>
+                <Text style={styles.InputTitle}>End hour</Text>
+                <TextInputMask
+                  style={styles.DateInput}
+                  placeholder="00:00"
+                  maxLength={5}
+                  keyboardType="number-pad"
+                  type="custom"
+                  options={{
+                    mask: "99:99",
+                  }}
+                  textAlign="center"
+                  placeholderTextColor={"#718096"}
+                  onChangeText={(text) => setEndHour(text)}
+                  value={endHour}
+                />
+              </View>
+            </View>
+            <CustomButton text="Save" onPress={() => DatesHandler()} />
+          </View>
+        </TouchableWithoutFeedback>
+      </Modal>
   );
 };
 

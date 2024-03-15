@@ -18,6 +18,7 @@ const Home = () => {
   const CalcParams = useCalcParamsStore();
 
   const AddOvertimeHandler = async () => {
+    
     const { totalHorasDiurnas, totalHorasNoturnas, totalHorasDiasEspeciais } =
       await CalcOvertimeHours(initialDate, finalDate);
     if (
