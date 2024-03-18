@@ -27,8 +27,8 @@ const HistoricCard = ({
         </View>
         <Text style={styles.SectionText}>
           <Text style={styles.DateName}>Start:</Text>{" "}
-          {moment(initDate, "YYYY/MM/DD HH:mm").format('L')}{" "}
-          {moment(initDate, "YYYY/MM/DD HH:mm").format("LT")}
+          {moment(initDate, "DD/MM/YYYY HH:mm").format('L')}{" "}
+          {moment(initDate, "DD/MM/YYYY HH:mm").format("LT")}
         </Text>
       </View>
       <View style={styles.SectionContainer}>
@@ -38,8 +38,8 @@ const HistoricCard = ({
         </View>
         <Text style={styles.SectionText}>
           <Text style={styles.DateName}>End:</Text>{" "}
-          {moment(endDate, "YYYY/MM/DD HH:mm").format('L')}{" "}
-          {moment(endDate, "YYYY/MM/DD HH:mm").format("LT")}
+          {moment(endDate, "DD/MM/YYYY HH:mm").format('L')}{" "}
+          {moment(endDate, "DD/MM/YYYY HH:mm").format("LT")}
         </Text>
       </View>
     </View>

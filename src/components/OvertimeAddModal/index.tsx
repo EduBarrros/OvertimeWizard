@@ -47,7 +47,13 @@ const OvertimeAddModal = ({
   };
 
   useEffect(() => {
-    if (initialDate !== "" && finalDate !== "") onSubmit();
+    if (initialDate !== "" && finalDate !== "") {
+      setStartDate("");
+      setEndDate("");
+      setStartHour("");
+      setEndHour("");
+      onSubmit();
+    }
   }, [initialDate, endDate]);
 
   return (
@@ -89,9 +95,12 @@ const OvertimeAddModal = ({
                 <TextInputMask
                   style={styles.DateInput}
                   type="datetime"
-                  placeholder="00/00/00"
+                  placeholder="00/00/0000"
+                  options={{
+                    format: 'DD/MM/YYYY'
+                  }}
                   textAlign="center"
-                  maxLength={8}
+                  maxLength={10}
                   placeholderTextColor={"#718096"}
                   onChangeText={(text) => setStartDate(text)}
                   value={startDate}
@@ -120,10 +129,13 @@ const OvertimeAddModal = ({
                 <Text style={styles.InputTitle}>End date</Text>
                 <TextInputMask
                   style={styles.DateInput}
-                  placeholder="00/00/00"
+                  placeholder="00/00/0000"
                   type="datetime"
                   textAlign="center"
-                  maxLength={8}
+                  options={{
+                    format: 'DD/MM/YYYY'
+                  }}
+                  maxLength={10}
                   placeholderTextColor={"#718096"}
                   onChangeText={(text) => setEndDate(text)}
                   value={endDate}
