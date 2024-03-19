@@ -13,12 +13,14 @@ const CalcOvertimeHours = async (initDate: string, finalDate: string) => {
   const data2 = parse(finalDate, formatoDataHora, new Date());
 
   // Inicializa o total de horas diurnas, noturnas, e em dias especiais
+
   let totalHorasDiurnas = 0;
   let totalHorasNoturnas = 0;
-  let totalHorasDiasEspeciais = 0;
+  let totalHorasEspeciais = 0;
 
   // Itera sobre as horas entre as duas datas
-  for (let horaAtual = data1; horaAtual < data2; horaAtual = set(horaAtual, { hours: horaAtual.getHours() + 1 })) {
+  for (let horaAtual = data1; horaAtual < data2; horaAtual = set(horaAtual, { minutes: horaAtual.getMinutes() + 1 })) {
+
     // Verifica se a hora está em um domingo
     const isSundayHour = isSunday(horaAtual);
 
@@ -27,7 +29,7 @@ const CalcOvertimeHours = async (initDate: string, finalDate: string) => {
 
     // Contabiliza como especial (feriado ou domingo)
     if (isSundayHour || isHolyday) {
-      totalHorasDiasEspeciais++;
+      totalHorasEspeciais++;
     } else {
       // Verifica se a hora está entre 6h e 23h para contabilizar como diurna
       if (horaAtual.getHours() >= 6 && horaAtual.getHours() <= 23) {
@@ -38,7 +40,10 @@ const CalcOvertimeHours = async (initDate: string, finalDate: string) => {
     }
   }
 
-  return { totalHorasDiurnas, totalHorasNoturnas, totalHorasDiasEspeciais };
+  const OverTimeReturnBody = { totalHorasDiurnas: totalHorasDiurnas / 60, totalHorasNoturnas: totalHorasNoturnas / 60, totalHorasEspeciais: totalHorasEspeciais / 60 };
+
+  console.log(OverTimeReturnBody)
+  return OverTimeReturnBody
 };
 
 export default CalcOvertimeHours;

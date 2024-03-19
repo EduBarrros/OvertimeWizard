@@ -19,26 +19,26 @@ const Home = () => {
 
   const AddOvertimeHandler = async () => {
     
-    const { totalHorasDiurnas, totalHorasNoturnas, totalHorasDiasEspeciais } =
+    const { totalHorasDiurnas, totalHorasNoturnas, totalHorasEspeciais } =
       await CalcOvertimeHours(initialDate, finalDate);
     if (
-      totalHorasDiasEspeciais > 0 &&
+      totalHorasEspeciais > 0 &&
       totalHorasDiurnas === 0 &&
       totalHorasNoturnas === 0
     ) {
       const CalcHourPrice =
-        totalHorasDiasEspeciais *
+        totalHorasEspeciais *
         (CalcParams.HourPrice * (1 + CalcParams.SundaysTimePercentage / 100));
 
       const OvertimeBody = {
         initDate: initialDate,
         endDate: finalDate,
-        hours: totalHorasDiasEspeciais,
+        hours: totalHorasEspeciais,
         value: CalcHourPrice,
       };
 
       CalcParams.setOvertime([...CalcParams.Overtimes, OvertimeBody]);
-    } else if (totalHorasDiasEspeciais === 0) {
+    } else if (totalHorasEspeciais === 0) {
       const MorningOvetime =
         totalHorasDiurnas *
         (CalcParams.HourPrice * (1 + CalcParams.DayTimePercentage / 100));
@@ -57,7 +57,7 @@ const Home = () => {
       CalcParams.setOvertime([...CalcParams.Overtimes, OvertimeBody]);
     } else {
       const SpecialOvertime =
-        totalHorasDiasEspeciais *
+        totalHorasEspeciais *
         (CalcParams.HourPrice * (1 + CalcParams.SundaysTimePercentage / 100));
 
       const MorningOvetime =
@@ -71,7 +71,7 @@ const Home = () => {
       const OvertimeBody = {
         initDate: initialDate,
         endDate: finalDate,
-        hours: totalHorasDiurnas + totalHorasNoturnas + totalHorasDiasEspeciais,
+        hours: totalHorasDiurnas + totalHorasNoturnas + totalHorasEspeciais,
         value: MorningOvetime + NightOvertime + SpecialOvertime,
       };
 
