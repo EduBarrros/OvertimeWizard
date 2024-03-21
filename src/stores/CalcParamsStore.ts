@@ -8,7 +8,7 @@ type Overtime = {
   endDate: string
 }
 
-interface CalcParamsState {
+export interface CalcParamsState {
   HourPrice: number
   SetHourPrice: (by: number) => void
   DayTimePercentage: number

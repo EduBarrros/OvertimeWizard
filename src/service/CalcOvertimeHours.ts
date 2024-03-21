@@ -42,7 +42,6 @@ const CalcOvertimeHours = async (initDate: string, finalDate: string) => {
 
   const OverTimeReturnBody = { totalHorasDiurnas: totalHorasDiurnas / 60, totalHorasNoturnas: totalHorasNoturnas / 60, totalHorasEspeciais: totalHorasEspeciais / 60 };
 
-  console.log(OverTimeReturnBody)
   return OverTimeReturnBody
 };
 
