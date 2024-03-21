@@ -24,7 +24,6 @@ const Home = () => {
 
   const GetOvertimes = async () => {
     const Overtimes = await GetData("Overtimes");
-   
     CalcParams.setOvertime(Overtimes);
   };
 
@@ -45,8 +44,8 @@ const Home = () => {
   return (
     <SafeAreaView style={styles.MainContainer}>
       <Header title="Hi Eduardo" />
-      <OvertimeResume />
-      <OvertimeHistoric onPress={() => setShowAddModal(!showAddModal)} />
+      <OvertimeResume onPress={() => setShowAddModal(!showAddModal)}/>
+      <OvertimeHistoric />
       <OvertimeAddModal
         show={showAddModal}
         onClose={() => setShowAddModal(!showAddModal)}

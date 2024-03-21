@@ -3,25 +3,30 @@ import { StyleSheet, Platform } from "react-native";
 
 const styles = StyleSheet.create({
     MainContainer: {
-        height: 140,
-        marginTop: 8,
-        backgroundColor: 'gray',
-        borderRadius: 10,
-        ...Platform.select({
-            ios: {
-              shadowColor: 'black',
-              shadowOffset: { width: 0, height: 2 },
-              shadowOpacity: 0.3,
-              shadowRadius: 4,
-            },
-            android: {
-              elevation: 4,
-            },
-          }),
+      marginTop: 16
     },
     SubContainer: {
-        flexDirection: 'row'
+      flexDirection: 'row',
+      marginBottom: 16
     },
+    InfoContainer: {
+      width: '50%',
+    },
+    TitleText: {
+      color: '#2B6CB0'
+    },
+    InfoText: {
+      fontSize: 24,
+      fontWeight: 'bold',
+      color: '#2D3748',
+      marginTop: 8
+    },
+    Divider: {
+      height: 1,
+      backgroundColor: "#00000050",
+      marginVertical: 8,
+      borderRadius: 1
+    }
 });
 
 export default styles;

@@ -1,15 +1,10 @@
 import React from "react";
-import { View, Text, FlatList, ListRenderItem} from "react-native";
 import styles from "./styles";
 import { useCalcParamsStore } from "../../stores";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { View, Text, FlatList, ListRenderItem } from "react-native";
 
 import HistoricCard from "../HistoricCard";
-import OvertimeAddButton from "../OvertimeAddButton";
-
-type OvertimeHistoricProps = {
-  onPress: () => void;
-};
 
 type Overtime = {
   hours: number;
@@ -18,7 +13,7 @@ type Overtime = {
   endDate: string;
 };
 
-const OvertimeHistoric = ({ onPress }: OvertimeHistoricProps) => {
+const OvertimeHistoric = () => {
   const CalcParams = useCalcParamsStore();
 
   const RenderItem: ListRenderItem<Overtime> = ({ item }) => (
@@ -33,15 +28,16 @@ const OvertimeHistoric = ({ onPress }: OvertimeHistoricProps) => {
   const EmptyComponent = () => {
     return (
       <View style={styles.EmptyMainContainer}>
-        <Ionicons name="search" color={'#021867'} size={40} />
-        <Text style={styles.EmptyTitle}>You do not have overtime hours registered</Text>
+        <Ionicons name="search" color={"#021867"} size={40} />
+        <Text style={styles.EmptyTitle}>
+          You do not have overtime hours registered
+        </Text>
       </View>
     );
   };
 
   return (
     <View style={styles.MainContainer}>
-      <OvertimeAddButton onPress={onPress} />
       <FlatList
         data={CalcParams.Overtimes}
         renderItem={RenderItem}

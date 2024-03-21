@@ -38,7 +38,7 @@ const HistoricCard = ({
         <View>
           <Text style={styles.DateName}>To receive:</Text>
           <Text style={styles.SectionValue}>
-            R$ {value.toFixed(2).replace(".", ",")}
+            R$ {value?.toFixed(2)?.replace(".", ",")}
           </Text>
         </View>
         <Text style={styles.SectionText}>
