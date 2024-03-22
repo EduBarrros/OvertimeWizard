@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     SubContainer: {
         backgroundColor: "white",
         paddingHorizontal: "2.5%",
-        paddingVertical: 16,
+        paddingBottom: 32,
         borderTopStartRadius: 16,
         borderTopEndRadius: 16,
     },
@@ -58,6 +58,14 @@ const styles = StyleSheet.create({
     },
     ErrorText: {
         color: 'red',
+    },
+    HeaderSwipe: {
+        backgroundColor: '#718096',
+        height: 2,
+        width: '30%',
+        borderRadius: 1,
+        marginLeft: '35%',
+        marginVertical: 12
     }
 });
 

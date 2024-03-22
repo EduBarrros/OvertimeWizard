@@ -5,10 +5,10 @@ import {
   OvertimeAddModal,
 } from "../../components";
 import styles from "./styles";
-import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native";
+import { GetData } from "../../localStorage";
 import { useCalcParamsStore } from "../../stores";
-import { StoreData, GetData } from "../../localStorage";
+import React, { useEffect, useState } from "react";
 import { CalcOvertimeHours, CalcOvertimeValue } from "../../service";
 
 const Home = () => {

@@ -6,8 +6,8 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "#021867",
-        height: 70,
-        borderRadius: 8,
+        height: 48,
+        borderRadius: 40,
         marginVertical: 8,
         ...Platform.select({
             ios: {

@@ -43,7 +43,7 @@ const OvertimeResume = ({ onPress }: OvertimeResumeProps) => {
           <Text style={styles.TitleText}>Total hours</Text>
           <Text style={styles.InfoText}>{`${
             totalHours !== undefined ? Math.floor(totalHours) : 0
-          }h ${HoursWithMinutesConverter(totalHours).minutosFormatados}min`}</Text>
+          }h ${ totalHours !== undefined ? HoursWithMinutesConverter(totalHours).minutosFormatados : 0}min`}</Text>
         </View>
       </View>
       <OvertimeAddButton onPress={onPress} />

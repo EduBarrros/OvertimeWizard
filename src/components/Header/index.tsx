@@ -23,10 +23,7 @@ const Header = ({ title, showBackButton }: HeaderProps) => {
       ) : (
         <>
           <Text style={styles.UserName}>{title}</Text>
-          <TouchableOpacity onPress={() => {
-            navigation.navigate("Settings" as never)
-            AsyncStorage.clear()
-          }}>
+          <TouchableOpacity onPress={() => navigation.navigate("Settings" as never)}>
             <Ionicons name="settings" color='gray' size={28} />
           </TouchableOpacity>
         </>

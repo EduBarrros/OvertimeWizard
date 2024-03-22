@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from "react";
-import { TextInputMask } from "react-native-masked-text";
 import {
   View,
   Text,
@@ -8,9 +6,12 @@ import {
   Keyboard,
 } from "react-native";
 import styles from "./styles";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import CustomButton from "../CustomButton";
 import Modal from "react-native-modal";
+import CustomButton from "../CustomButton";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import React, { useEffect, useState } from "react";
+import { TextInputMask } from "react-native-masked-text";
+import { DateTimeInfoValidator } from "../../Utils";
 
 type OvertimeAddModalProps = {
   show: boolean;
@@ -44,11 +45,31 @@ const OvertimeAddModal = ({
   const [endHourError, setEndHourError] = useState(false);
 
   const DatesHandler = () => {
-    const InitialDate = `${startDate} ${startHour}`;
-    const EndDate = `${endDate} ${endHour}`;
+    const StartValidator = DateTimeInfoValidator(startDate, startHour);
+    const EndValidator = DateTimeInfoValidator(endDate, endHour);
 
-    setInitialDate(InitialDate);
-    setFinalDate(EndDate);
+    if (
+      StartValidator.validDate &&
+      StartValidator.validHour &&
+      EndValidator.validDate &&
+      EndValidator.validHour
+    ) {
+      setStartDateError(false);
+      setStartHourError(false);
+      setEndDateError(false);
+      setEndHourError(false);
+
+      const InitialDate = `${startDate} ${startHour}`;
+      const EndDate = `${endDate} ${endHour}`;
+
+      setInitialDate(InitialDate);
+      setFinalDate(EndDate);
+    } else {
+      setStartDateError(!StartValidator.validDate);
+      setStartHourError(!StartValidator.validHour);
+      setEndDateError(!EndValidator.validDate);
+      setEndHourError(!EndValidator.validHour);
+    }
   };
 
   useEffect(() => {
@@ -75,6 +96,10 @@ const OvertimeAddModal = ({
         setEndDate("");
         setStartHour("");
         setEndHour("");
+        setStartDateError(false);
+        setStartHourError(false);
+        setEndDateError(false);
+        setEndHourError(false);
       }}
       onSwipeComplete={() => {
         onClose();
@@ -82,16 +107,33 @@ const OvertimeAddModal = ({
         setEndDate("");
         setStartHour("");
         setEndHour("");
+        setStartDateError(false);
+        setStartHourError(false);
+        setEndDateError(false);
+        setEndHourError(false);
       }}
       swipeDirection="down"
       avoidKeyboard={true}
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <View style={styles.SubContainer}>
+          <View style={styles.HeaderSwipe}/>
           <View style={styles.HeaderModal}>
             <Text style={styles.HeaderTitle}>New overtime</Text>
-            <TouchableOpacity onPress={() => onClose()}>
-              <Ionicons name="close" size={32} />
+            <TouchableOpacity
+              onPress={() => {
+                onClose();
+                setStartDate("");
+                setEndDate("");
+                setStartHour("");
+                setEndHour("");
+                setStartDateError(false);
+                setStartHourError(false);
+                setEndDateError(false);
+                setEndHourError(false);
+              }}
+            >
+              <Ionicons name="close" size={32} color={'#718096'}/>
             </TouchableOpacity>
           </View>
           <View style={styles.StartContainer}>
@@ -114,7 +156,7 @@ const OvertimeAddModal = ({
                 value={startDate}
               />
               {startDateError ? (
-                <Text style={styles.ErrorText}>Invalid Date</Text>
+                <Text style={styles.ErrorText}>Invalid date</Text>
               ) : null}
             </View>
             <View style={styles.StartHourContainer}>
@@ -137,7 +179,7 @@ const OvertimeAddModal = ({
                 value={startHour}
               />
               {startHourError ? (
-                <Text style={styles.ErrorText}>Invalid Hour</Text>
+                <Text style={styles.ErrorText}>Invalid hour</Text>
               ) : null}
             </View>
           </View>
@@ -161,14 +203,16 @@ const OvertimeAddModal = ({
                 value={endDate}
               />
               {endDateError ? (
-                <Text style={styles.ErrorText}>Invalid Date</Text>
+                <Text style={styles.ErrorText}>Invalid date</Text>
               ) : null}
             </View>
             <View style={styles.EndHourContainer}>
               <Text style={styles.InputTitle}>End hour</Text>
               <TextInputMask
-                style={[styles.DateInput,
-                  endHourError && styles.errorIndicator]}
+                style={[
+                  styles.DateInput,
+                  endHourError && styles.errorIndicator,
+                ]}
                 placeholder="00:00"
                 maxLength={5}
                 keyboardType="number-pad"
@@ -181,8 +225,8 @@ const OvertimeAddModal = ({
                 onChangeText={(text) => setEndHour(text)}
                 value={endHour}
               />
-              {startHourError ? (
-                <Text style={styles.ErrorText}>Invalid Date</Text>
+              {endHourError ? (
+                <Text style={styles.ErrorText}>Invalid hour</Text>
               ) : null}
             </View>
           </View>

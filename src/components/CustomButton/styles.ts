@@ -6,14 +6,14 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "#021867",
-        height: 60,
+        height: 48,
         marginTop: 40,
-        borderRadius: 8
+        borderRadius: 40
     },
     MainText: {
         color: "white",
         fontWeight: "bold",
-        fontSize: 18
+        fontSize: 16
     }
 });
 
