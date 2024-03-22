@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         width: "90%",
         backgroundColor: '#EDF2F7',
         marginTop: 16,
-        borderRadius: 8
+        borderRadius: 8,
     },
     EndContainer: {
         flexDirection: 'row',
@@ -51,6 +51,13 @@ const styles = StyleSheet.create({
     },
     InputTitle: {
         color: '#2B6CB0'
+    },
+    errorIndicator: {
+        borderWidth: 1,
+        borderColor: 'red', // Bordas vermelhas em caso de erro
+    },
+    ErrorText: {
+        color: 'red',
     }
 });
 

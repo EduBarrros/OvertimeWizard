@@ -3,6 +3,7 @@ import { Text, TouchableOpacity, View } from "react-native";
 import styles from "./styles";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type HeaderProps = {
   title: string;
@@ -22,7 +23,10 @@ const Header = ({ title, showBackButton }: HeaderProps) => {
       ) : (
         <>
           <Text style={styles.UserName}>{title}</Text>
-          <TouchableOpacity onPress={() => navigation.navigate("Settings" as never)}>
+          <TouchableOpacity onPress={() => {
+            navigation.navigate("Settings" as never)
+            AsyncStorage.clear()
+          }}>
             <Ionicons name="settings" color='gray' size={28} />
           </TouchableOpacity>
         </>

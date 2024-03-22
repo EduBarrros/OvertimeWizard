@@ -30,9 +30,13 @@ const CalcOvertimeValue = async (initialDate: string, finalDate: string, totalHo
             if (calcParams?.Overtimes?.length > 0) {
                 const OvertimesData = [...calcParams.Overtimes, OvertimeBody];
                 await StoreData("Overtimes", JSON.stringify(OvertimesData));
+
+                calcParams.setOvertime(OvertimesData)
             } else {
                 const OvertimesData = [OvertimeBody];
                 await StoreData("Overtimes", JSON.stringify(OvertimesData));
+
+                calcParams.setOvertime(OvertimesData)
             }
         } catch (error) {
             console.log(error)
@@ -92,9 +96,13 @@ const CalcOvertimeValue = async (initialDate: string, finalDate: string, totalHo
             if (calcParams?.Overtimes?.length > 0) {
                 const OvertimesData = [...calcParams.Overtimes, OvertimeBody];
                 await StoreData("Overtimes", JSON.stringify(OvertimesData));
+
+                calcParams.setOvertime(OvertimesData)
             } else {
                 const OvertimesData = [OvertimeBody];
                 await StoreData("Overtimes", JSON.stringify(OvertimesData));
+
+                calcParams.setOvertime(OvertimesData)
             }
         } catch (error) {
             console.log(error)
